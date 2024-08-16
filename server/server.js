@@ -10,7 +10,7 @@ const app = express();
 
 // Middleware to enable CORS
 app.use(cors({
-  origin: 'http://localhost:3000', // Replace with your frontend URL
+  origin: 'http://localhost:3000'|| 'https://crud-mern-1-ts32.onrender.com', // Replace with your frontend URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed HTTP methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Specify the allowed headers
 }));
