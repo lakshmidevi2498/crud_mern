@@ -130,9 +130,7 @@ const StudentComponent = () => {
 
     if (isNameValid && isBranchValid && isGpaValid && isLocationValid) {
       submitHandle();
-    } else {
-      alert('Please fill out all fields correctly.');
-    }
+    } 
   };
 
   const validateName = (name) => {
@@ -181,7 +179,7 @@ const StudentComponent = () => {
       alert('Please enter all fields');
     } else {
       const newStudent = { ...student };
-      const data = await saveStudentData(newStudent);
+       await saveStudentData(newStudent);
       fetchData();
       handleCancel();
     }
@@ -225,6 +223,7 @@ const StudentComponent = () => {
           <Imports.Grid item sx={{ justifyContent: 'center', display: 'flex' }} xs={12}>
             <Imports.Grid container sx={{ justifyContent: 'center', display: 'flex' }} mt={4}>
               <Imports.Grid item sx={{ justifyContent: 'center', display: 'flex', alignItems: 'center' }} gap={1}>
+                <Imports.Grid item sx={{dispaly :"block"}}>
                 <Imports.TextField
                   required
                   id="outlined-required"
@@ -233,6 +232,9 @@ const StudentComponent = () => {
                   value={student.name}
                   onChange={handleChange}
                 />
+                {errors.nameError && <Imports.Typography sx={{color:"red"}}>Please enter your name </Imports.Typography>}
+                </Imports.Grid>
+                <Imports.Grid item sx={{dispaly :"block"}}>
                 <Imports.TextField
                   required
                   id="outlined-required"
@@ -241,6 +243,9 @@ const StudentComponent = () => {
                   value={student.branch}
                   onChange={handleChange}
                 />
+                {errors.branchError && <Imports.Typography sx={{color:"red"}}>Please enter your branch name </Imports.Typography>}
+                </Imports.Grid>
+                <Imports.Grid item sx={{dispaly :"block"}}>
                 <Imports.TextField
                   required
                   id="outlined-required"
@@ -249,6 +254,9 @@ const StudentComponent = () => {
                   value={student.gpa}
                   onChange={handleChange}
                 />
+                {errors.gpaError && <Imports.Typography sx={{color:"red"}}>Please enter your GPA</Imports.Typography>}
+                </Imports.Grid>
+                <Imports.Grid item sx={{dispaly :"block"}}>
                 <Imports.TextField
                   required
                   id="outlined-required"
@@ -257,6 +265,8 @@ const StudentComponent = () => {
                   value={student.location}
                   onChange={handleChange}
                 />
+                {errors.locationError && <Imports.Typography sx={{color:"red"}}>Please enter your location</Imports.Typography>}
+                </Imports.Grid>
                 <Imports.Grid item gap={2}>
                   {data.editMode ? (
                     <Imports.Button
