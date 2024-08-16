@@ -9,10 +9,21 @@ dotenv.config();
 const app = express();
 
 // Middleware to enable CORS
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://crud-mern-1-ts32.onrender.com'
+];
+
 app.use(cors({
-  origin: 'http://localhost:3000'|| 'https://crud-mern-1-ts32.onrender.com', // Replace with your frontend URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify the allowed HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Specify the allowed headers
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(bodyParser.json());
